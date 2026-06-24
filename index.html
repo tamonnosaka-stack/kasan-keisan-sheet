@@ -9,6 +9,8 @@
     --card: #ffffff;
     --accent: #0f6e78;
     --accent-soft: #e3f0f1;
+    --shoshin: #0f6e78;
+    --saishin: #9aa6b0;
     --future: #b06a00;
     --future-bg: #fdf4e3;
     --future-line: #f0d9a8;
@@ -22,141 +24,58 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 40px 24px 64px;
+  .wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 64px; }
+  header.head { border-bottom: 2px solid var(--accent); padding-bottom: 18px; margin-bottom: 28px; }
+  .eyebrow { font-size: 12px; letter-spacing: .12em; color: var(--accent); font-weight: 700; margin: 0 0 6px; }
+  h1 { font-size: clamp(22px, 4vw, 30px); margin: 0; line-height: 1.3; text-wrap: balance; }
+  .sub { margin: 8px 0 0; color: var(--ink-soft); font-size: 14px; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 24px; margin-bottom: 24px; }
+  .card h2 { font-size: 15px; margin: 0 0 18px; letter-spacing: .04em; }
+
+  .inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; color: var(--ink-soft); margin-bottom: 6px; }
+  .field .hint { font-size: 12px; color: var(--ink-soft); font-weight: 400; margin-top: 4px; }
+  .field input[type=number] {
+    width: 100%; font-size: 22px; font-variant-numeric: tabular-nums;
+    padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink); background: #fff;
   }
-  header.head {
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 18px;
-    margin-bottom: 28px;
-  }
-  .eyebrow {
-    font-size: 12px;
-    letter-spacing: .12em;
-    color: var(--accent);
-    font-weight: 700;
-    margin: 0 0 6px;
-  }
-  h1 {
-    font-size: clamp(22px, 4vw, 30px);
-    margin: 0;
-    line-height: 1.3;
-    text-wrap: balance;
-  }
-  .sub {
-    margin: 8px 0 0;
-    color: var(--ink-soft);
-    font-size: 14px;
-  }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 24px;
-    margin-bottom: 24px;
-  }
-  .card h2 {
-    font-size: 15px;
-    margin: 0 0 18px;
-    letter-spacing: .04em;
-    color: var(--ink);
-  }
-  .inputs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-  }
-  .field label {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--ink-soft);
-    margin-bottom: 6px;
-  }
-  .field .hint {
-    font-size: 12px;
-    color: var(--ink-soft);
-    font-weight: 400;
-    margin-top: 4px;
-  }
-  .field input {
-    width: 100%;
-    font-size: 22px;
-    font-variant-numeric: tabular-nums;
-    padding: 10px 12px;
-    border: 1.5px solid var(--line);
-    border-radius: 8px;
-    color: var(--ink);
-    background: #fff;
-  }
-  .field input:focus {
-    outline: 3px solid var(--accent-soft);
-    border-color: var(--accent);
-  }
-  .basis {
-    margin-top: 18px;
-    background: var(--accent-soft);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: #0a4a52;
-  }
+  .field input:focus { outline: 3px solid var(--accent-soft); border-color: var(--accent); }
+  .rangewrap { display: flex; align-items: center; gap: 12px; }
+  .rangewrap input[type=range] { flex: 1; accent-color: var(--accent); }
+  .rangewrap .pct { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 64px; text-align: right; }
+
+  .mix { margin-top: 20px; }
+  .mixbar { display: flex; height: 26px; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
+  .mixbar .seg { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; transition: width .15s ease; }
+  .seg.shoshin { background: var(--shoshin); }
+  .seg.saishin { background: var(--saishin); }
+  .basis { margin-top: 18px; background: var(--accent-soft); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #0a4a52; }
   .basis b { font-variant-numeric: tabular-nums; }
 
   .table-scroll { overflow-x: auto; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 560px;
-  }
-  th, td {
-    text-align: right;
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--line-soft);
-    font-variant-numeric: tabular-nums;
-  }
-  th { font-size: 12px; color: var(--ink-soft); font-weight: 700; letter-spacing: .03em; }
+  table { width: 100%; border-collapse: collapse; min-width: 680px; }
+  th, td { text-align: right; padding: 13px 14px; border-bottom: 1px solid var(--line-soft); font-variant-numeric: tabular-nums; }
+  th { font-size: 12px; color: var(--ink-soft); font-weight: 700; letter-spacing: .02em; }
   td:first-child, th:first-child { text-align: left; }
   thead th { border-bottom: 2px solid var(--line); }
+  .colsplit { color: var(--ink-soft); }
   .item-name { font-weight: 700; }
   .item-desc { font-weight: 400; font-size: 12px; color: var(--ink-soft); display: block; margin-top: 2px; }
-  .pts { font-weight: 700; font-size: 16px; }
+  .pts { font-weight: 700; }
+  .big { font-size: 17px; font-weight: 700; }
   .yen { color: var(--ink-soft); font-size: 12px; display: block; margin-top: 2px; }
-  .big { font-size: 18px; font-weight: 700; }
 
   tr.future { background: var(--future-bg); }
   tr.future td { border-bottom-color: var(--future-line); }
-  .badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    color: #fff;
-    background: var(--future);
-    border-radius: 999px;
-    padding: 2px 9px;
-    margin-left: 8px;
-    letter-spacing: .02em;
-    vertical-align: middle;
-  }
-  tr.future .pts, tr.future .big { color: var(--future); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: var(--future); border-radius: 999px; padding: 2px 9px; margin-left: 8px; letter-spacing: .02em; vertical-align: middle; }
+  tr.future .big { color: var(--future); }
 
-  .note {
-    border-left: 4px solid var(--future);
-    background: var(--future-bg);
-    border-radius: 0 8px 8px 0;
-    padding: 14px 18px;
-    margin-top: 22px;
-    font-size: 13px;
-    color: #6b4400;
-  }
+  .note { border-left: 4px solid var(--future); background: var(--future-bg); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 22px; font-size: 13px; color: #6b4400; }
   .note strong { color: var(--future); }
-  .foot {
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-top: 8px;
-  }
+  .info { font-size: 12px; color: var(--ink-soft); margin-top: 14px; }
+
+  .foot { font-size: 12px; color: var(--ink-soft); margin-top: 8px; }
   .foot ul { margin: 6px 0 0; padding-left: 18px; }
 </style>
 
@@ -164,7 +83,7 @@
   <header class="head">
     <p class="eyebrow">令和8年度診療報酬改定 — 年間試算</p>
     <h1>電子的診療情報連携体制整備加算 試算シート</h1>
-    <p class="sub">患者1人につき月1回算定。1日の患者数と月間診療日数を入力すると、4点・9点・15点それぞれの年間点数・金額を試算します。</p>
+    <p class="sub">加算は患者1人につき月1回算定。初診（再来初診を含む）は 4 / 9 / 15点、再診（2回目以降）は一律 2点。1日の患者数・診療日数・初診の割合から年間点数を試算します。</p>
   </header>
 
   <section class="card">
@@ -180,9 +99,26 @@
         <input id="daysPerMonth" type="number" min="0" max="31" step="1" value="22" inputmode="numeric">
         <div class="hint">標準的な月の診療日数</div>
       </div>
+      <div class="field">
+        <label for="shoshinRate">初診の割合（%）</label>
+        <div class="rangewrap">
+          <input id="shoshinRate" type="range" min="0" max="100" step="1" value="20">
+          <span class="pct"><span id="rateVal">20</span>%</span>
+        </div>
+        <div class="hint">新患＋再来初診の割合（高い点数が取れる枠）。残りは再診（2点）。</div>
+      </div>
     </div>
+
+    <div class="mix">
+      <div class="mixbar">
+        <div class="seg shoshin" id="segShoshin">初診</div>
+        <div class="seg saishin" id="segSaishin">再診</div>
+      </div>
+    </div>
+
     <div class="basis">
-      月間算定回数 = <b id="bDay">40</b> 人 × <b id="bDays">22</b> 日 = <b id="bMonth">880</b> 回／月　→　年間 <b id="bYear">10,560</b> 回（×12か月）
+      月間算定数（延べ）= <b id="bDay">40</b> 人 × <b id="bDays">22</b> 日 = <b id="bMonth">880</b> 回／月<br>
+      └ 初診分 <b id="bShoshin">176</b> 回／月　・　再診分 <b id="bSaishin">704</b> 回／月　→　年間 <b id="bYear">10,560</b> 回（×12か月）
     </div>
   </section>
 
@@ -193,33 +129,38 @@
         <thead>
           <tr>
             <th>加算項目</th>
-            <th>点数</th>
-            <th>年間点数</th>
-            <th>年間金額</th>
+            <th class="colsplit">初診分（年間）</th>
+            <th class="colsplit">再診分（年間・2点）</th>
+            <th>年間 合計点数</th>
+            <th>年間 金額</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="item-name">項目1<span class="item-desc">電子的診療情報連携体制整備加算 ①</span></td>
-            <td><span class="pts">4 点</span></td>
-            <td><span class="big" id="pts4">—</span></td>
-            <td><span class="big" id="yen4">—</span></td>
+            <td class="item-name">項目1（初診4点）<span class="item-desc">整備加算 ①</span></td>
+            <td class="colsplit"><span class="pts" id="s4">—</span></td>
+            <td class="colsplit"><span class="pts" id="r4">—</span></td>
+            <td><span class="big" id="t4">—</span></td>
+            <td><span class="big" id="y4">—</span></td>
           </tr>
           <tr>
-            <td class="item-name">項目2<span class="item-desc">電子的診療情報連携体制整備加算 ②</span></td>
-            <td><span class="pts">9 点</span></td>
-            <td><span class="big" id="pts9">—</span></td>
-            <td><span class="big" id="yen9">—</span></td>
+            <td class="item-name">項目2（初診9点）<span class="item-desc">整備加算 ②</span></td>
+            <td class="colsplit"><span class="pts" id="s9">—</span></td>
+            <td class="colsplit"><span class="pts" id="r9">—</span></td>
+            <td><span class="big" id="t9">—</span></td>
+            <td><span class="big" id="y9">—</span></td>
           </tr>
           <tr class="future">
-            <td class="item-name">項目3<span class="badge">将来試算</span><span class="item-desc">現状の情報では算定不可。要件を満たした場合の試算。</span></td>
-            <td><span class="pts">15 点</span></td>
-            <td><span class="big" id="pts15">—</span></td>
-            <td><span class="big" id="yen15">—</span></td>
+            <td class="item-name">項目3（初診15点）<span class="badge">将来試算</span><span class="item-desc">現状の情報では算定不可。要件を満たした場合の試算。</span></td>
+            <td class="colsplit"><span class="pts" id="s15">—</span></td>
+            <td class="colsplit"><span class="pts" id="r15">—</span></td>
+            <td><span class="big" id="t15">—</span></td>
+            <td><span class="big" id="y15">—</span></td>
           </tr>
         </tbody>
       </table>
     </div>
+    <p class="info">※ 再診分（2点）は3項目とも同じ点数です。初診点数の違い（4 / 9 / 15）だけが合計に効きます。</p>
 
     <div class="note">
       <strong>※ 項目3（15点）について</strong><br>
@@ -230,47 +171,67 @@
   <p class="foot">
     試算の前提：
     <ul>
-      <li>各加算は「患者1人につき月1回」算定できるものとして計算しています。</li>
-      <li>月間算定回数 ＝ 1日の患者数 × 月間診療日数。1日の患者数がそのまま月1回の算定対象として重複なく積み上がる前提です（同一患者が同月に複数回受診する場合は実際の算定回数と異なります）。</li>
+      <li>加算は「患者1人につき月1回」算定。その月1回が初診（再来初診を含む）なら 4 / 9 / 15点、再診（2回目以降）なら一律 2点として計算します。</li>
+      <li>月間算定数（延べ）＝ 1日の患者数 × 月間診療日数。これを初診の割合で按分しています（同一患者が同月に複数回受診する場合は実際の算定回数と異なります）。</li>
+      <li>初診の割合は「期待値」としての概算です。新患・再来初診の実際の比率に合わせて調整してください。</li>
       <li>年間 ＝ 月間 × 12か月。金額は 1点 = 10円 で換算しています。</li>
     </ul>
   </p>
 </div>
 
 <script>
-  const fmt = n => n.toLocaleString("ja-JP");
-  const yen = n => "¥" + n.toLocaleString("ja-JP");
+  const fmt = n => Math.round(n).toLocaleString("ja-JP");
+  const yen = n => "¥" + Math.round(n).toLocaleString("ja-JP");
+  const SAISHIN_PTS = 2;
 
+  const $ = id => document.getElementById(id);
   const els = {
-    perDay: document.getElementById("perDay"),
-    days: document.getElementById("daysPerMonth"),
-    bDay: document.getElementById("bDay"),
-    bDays: document.getElementById("bDays"),
-    bMonth: document.getElementById("bMonth"),
-    bYear: document.getElementById("bYear"),
-    pts: { 4: document.getElementById("pts4"), 9: document.getElementById("pts9"), 15: document.getElementById("pts15") },
-    yen: { 4: document.getElementById("yen4"), 9: document.getElementById("yen9"), 15: document.getElementById("yen15") },
+    perDay: $("perDay"), days: $("daysPerMonth"), rate: $("shoshinRate"),
+    rateVal: $("rateVal"),
+    segShoshin: $("segShoshin"), segSaishin: $("segSaishin"),
+    bDay: $("bDay"), bDays: $("bDays"), bMonth: $("bMonth"),
+    bShoshin: $("bShoshin"), bSaishin: $("bSaishin"), bYear: $("bYear"),
   };
 
   function calc() {
     const perDay = Math.max(0, Number(els.perDay.value) || 0);
     const days = Math.max(0, Number(els.days.value) || 0);
+    const rate = Math.min(100, Math.max(0, Number(els.rate.value) || 0)) / 100;
+
     const monthly = perDay * days;
-    const yearly = monthly * 12;
+    const mShoshin = monthly * rate;
+    const mSaishin = monthly * (1 - rate);
+    const yShoshin = mShoshin * 12;
+    const ySaishin = mSaishin * 12;
+
+    els.rateVal.textContent = Math.round(rate * 100);
+    els.segShoshin.style.width = (rate * 100) + "%";
+    els.segSaishin.style.width = ((1 - rate) * 100) + "%";
+    els.segShoshin.style.display = rate > 0.06 ? "flex" : "none";
+    els.segSaishin.style.display = (1 - rate) > 0.06 ? "flex" : "none";
 
     els.bDay.textContent = fmt(perDay);
     els.bDays.textContent = fmt(days);
     els.bMonth.textContent = fmt(monthly);
-    els.bYear.textContent = fmt(yearly);
+    els.bShoshin.textContent = fmt(mShoshin);
+    els.bSaishin.textContent = fmt(mSaishin);
+    els.bYear.textContent = fmt(monthly * 12);
 
     [4, 9, 15].forEach(p => {
-      const points = yearly * p;
-      els.pts[p].textContent = fmt(points) + " 点";
-      els.yen[p].textContent = yen(points * 10);
+      const sPts = yShoshin * p;
+      const rPts = ySaishin * SAISHIN_PTS;
+      const total = sPts + rPts;
+      $("s" + p).textContent = fmt(sPts) + " 点";
+      $("r" + p).textContent = fmt(rPts) + " 点";
+      $("t" + p).innerHTML = fmt(total) + " 点<span class='yen'>" + yen(total * 10) + "</span>";
+      $("y" + p).textContent = yen(total * 10);
     });
   }
 
-  els.perDay.addEventListener("input", calc);
-  els.days.addEventListener("input", calc);
+  ["input", "change"].forEach(ev => {
+    els.perDay.addEventListener(ev, calc);
+    els.days.addEventListener(ev, calc);
+    els.rate.addEventListener(ev, calc);
+  });
   calc();
 </script>
