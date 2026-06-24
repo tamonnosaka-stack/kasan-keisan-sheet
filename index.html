@@ -1,0 +1,276 @@
+<title>電子的診療情報連携体制整備加算 年間試算シート</title>
+<style>
+  :root {
+    --ink: #1a2430;
+    --ink-soft: #4a5663;
+    --line: #d8dee5;
+    --line-soft: #e8ecf0;
+    --bg: #f4f6f8;
+    --card: #ffffff;
+    --accent: #0f6e78;
+    --accent-soft: #e3f0f1;
+    --future: #b06a00;
+    --future-bg: #fdf4e3;
+    --future-line: #f0d9a8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+  header.head {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  h1 {
+    font-size: clamp(22px, 4vw, 30px);
+    margin: 0;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .sub {
+    margin: 8px 0 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .card h2 {
+    font-size: 15px;
+    margin: 0 0 18px;
+    letter-spacing: .04em;
+    color: var(--ink);
+  }
+  .inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .field .hint {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-top: 4px;
+  }
+  .field input {
+    width: 100%;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+    padding: 10px 12px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink);
+    background: #fff;
+  }
+  .field input:focus {
+    outline: 3px solid var(--accent-soft);
+    border-color: var(--accent);
+  }
+  .basis {
+    margin-top: 18px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #0a4a52;
+  }
+  .basis b { font-variant-numeric: tabular-nums; }
+
+  .table-scroll { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+  }
+  th, td {
+    text-align: right;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  th { font-size: 12px; color: var(--ink-soft); font-weight: 700; letter-spacing: .03em; }
+  td:first-child, th:first-child { text-align: left; }
+  thead th { border-bottom: 2px solid var(--line); }
+  .item-name { font-weight: 700; }
+  .item-desc { font-weight: 400; font-size: 12px; color: var(--ink-soft); display: block; margin-top: 2px; }
+  .pts { font-weight: 700; font-size: 16px; }
+  .yen { color: var(--ink-soft); font-size: 12px; display: block; margin-top: 2px; }
+  .big { font-size: 18px; font-weight: 700; }
+
+  tr.future { background: var(--future-bg); }
+  tr.future td { border-bottom-color: var(--future-line); }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--future);
+    border-radius: 999px;
+    padding: 2px 9px;
+    margin-left: 8px;
+    letter-spacing: .02em;
+    vertical-align: middle;
+  }
+  tr.future .pts, tr.future .big { color: var(--future); }
+
+  .note {
+    border-left: 4px solid var(--future);
+    background: var(--future-bg);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 22px;
+    font-size: 13px;
+    color: #6b4400;
+  }
+  .note strong { color: var(--future); }
+  .foot {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+  .foot ul { margin: 6px 0 0; padding-left: 18px; }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow">令和8年度診療報酬改定 — 年間試算</p>
+    <h1>電子的診療情報連携体制整備加算 試算シート</h1>
+    <p class="sub">患者1人につき月1回算定。1日の患者数と月間診療日数を入力すると、4点・9点・15点それぞれの年間点数・金額を試算します。</p>
+  </header>
+
+  <section class="card">
+    <h2>入力</h2>
+    <div class="inputs">
+      <div class="field">
+        <label for="perDay">1日の患者数（人）</label>
+        <input id="perDay" type="number" min="0" step="1" value="40" inputmode="numeric">
+        <div class="hint">1日あたりの算定対象患者数</div>
+      </div>
+      <div class="field">
+        <label for="daysPerMonth">月間診療日数（日）</label>
+        <input id="daysPerMonth" type="number" min="0" max="31" step="1" value="22" inputmode="numeric">
+        <div class="hint">標準的な月の診療日数</div>
+      </div>
+    </div>
+    <div class="basis">
+      月間算定回数 = <b id="bDay">40</b> 人 × <b id="bDays">22</b> 日 = <b id="bMonth">880</b> 回／月　→　年間 <b id="bYear">10,560</b> 回（×12か月）
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>年間試算（1点 = 10円）</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>加算項目</th>
+            <th>点数</th>
+            <th>年間点数</th>
+            <th>年間金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="item-name">項目1<span class="item-desc">電子的診療情報連携体制整備加算 ①</span></td>
+            <td><span class="pts">4 点</span></td>
+            <td><span class="big" id="pts4">—</span></td>
+            <td><span class="big" id="yen4">—</span></td>
+          </tr>
+          <tr>
+            <td class="item-name">項目2<span class="item-desc">電子的診療情報連携体制整備加算 ②</span></td>
+            <td><span class="pts">9 点</span></td>
+            <td><span class="big" id="pts9">—</span></td>
+            <td><span class="big" id="yen9">—</span></td>
+          </tr>
+          <tr class="future">
+            <td class="item-name">項目3<span class="badge">将来試算</span><span class="item-desc">現状の情報では算定不可。要件を満たした場合の試算。</span></td>
+            <td><span class="pts">15 点</span></td>
+            <td><span class="big" id="pts15">—</span></td>
+            <td><span class="big" id="yen15">—</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>※ 項目3（15点）について</strong><br>
+      現状の情報では、項目3（15点）の算定要件を満たしておらず算定できません。上表の項目3の値は、<strong>今後算定可能になった場合の試算</strong>です。要件が確定し次第、改めて確認してください。
+    </div>
+  </section>
+
+  <p class="foot">
+    試算の前提：
+    <ul>
+      <li>各加算は「患者1人につき月1回」算定できるものとして計算しています。</li>
+      <li>月間算定回数 ＝ 1日の患者数 × 月間診療日数。1日の患者数がそのまま月1回の算定対象として重複なく積み上がる前提です（同一患者が同月に複数回受診する場合は実際の算定回数と異なります）。</li>
+      <li>年間 ＝ 月間 × 12か月。金額は 1点 = 10円 で換算しています。</li>
+    </ul>
+  </p>
+</div>
+
+<script>
+  const fmt = n => n.toLocaleString("ja-JP");
+  const yen = n => "¥" + n.toLocaleString("ja-JP");
+
+  const els = {
+    perDay: document.getElementById("perDay"),
+    days: document.getElementById("daysPerMonth"),
+    bDay: document.getElementById("bDay"),
+    bDays: document.getElementById("bDays"),
+    bMonth: document.getElementById("bMonth"),
+    bYear: document.getElementById("bYear"),
+    pts: { 4: document.getElementById("pts4"), 9: document.getElementById("pts9"), 15: document.getElementById("pts15") },
+    yen: { 4: document.getElementById("yen4"), 9: document.getElementById("yen9"), 15: document.getElementById("yen15") },
+  };
+
+  function calc() {
+    const perDay = Math.max(0, Number(els.perDay.value) || 0);
+    const days = Math.max(0, Number(els.days.value) || 0);
+    const monthly = perDay * days;
+    const yearly = monthly * 12;
+
+    els.bDay.textContent = fmt(perDay);
+    els.bDays.textContent = fmt(days);
+    els.bMonth.textContent = fmt(monthly);
+    els.bYear.textContent = fmt(yearly);
+
+    [4, 9, 15].forEach(p => {
+      const points = yearly * p;
+      els.pts[p].textContent = fmt(points) + " 点";
+      els.yen[p].textContent = yen(points * 10);
+    });
+  }
+
+  els.perDay.addEventListener("input", calc);
+  els.days.addEventListener("input", calc);
+  calc();
+</script>
